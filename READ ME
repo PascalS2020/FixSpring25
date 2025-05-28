@@ -1,0 +1,80 @@
+# PCM Heat Flux MATLAB Model
+
+This MATLAB model simulates transient heat flux through a wall system containing a Phase Change Material (PCM) layer. It tracks temperature, heat flow, and phase transitions based on real-world weather data and material properties.
+
+## Files Required
+
+Place all files in the same directory before running the model.
+
+- `PCM_HeatFlux_Model_Spring25_Final_1.m` – Main simulation script
+- `PCM_Running_List.xlsx` – Contains thermal and physical properties of different PCMs
+- `TemperatureDataCity.xlsx` – Hourly temperature profiles for various cities
+
+---
+
+## Setup Instructions
+
+1. **Open MATLAB.**
+2. **Set the working directory** to the folder containing all three files.
+3. Open the script `PCM_HeatFlux_Model_Spring25_Final_1.m`.
+4. Run the script (F5 or green play button).
+5. You will be prompted to input:
+   - **PCM Name**: e.g., `PCM18` (must exactly match a column header in `PCM_Running_List.xlsx`)
+   - **City and Date**: e.g., `Austin 03.14.2024`
+
+---
+
+## Input Format
+
+- **PCM Name**: Must match a column name from `PCM_Running_List.xlsx`. This selects which PCM properties to simulate.
+- **City and Date**: Format exactly as `"CityName DD.MM.YYYY"` (e.g., `"Austin 21.07.2023"`). Must match entries in `TemperatureDataCity.xlsx`.
+
+---
+
+## Model Overview
+
+- Wall layers: Limestone (left), PCM (center), Drywall (right)
+- Assumes:
+  - 10 m² wall area
+  - 24-hour simulation with 1-second time steps
+- Simulates heat transfer and PCM behavior (solid, melting, liquid) in response to outside temperatures
+
+---
+
+## Output
+
+After simulation, the model displays:
+
+- A 6-panel figure with plots for:
+  - Melt percentage over time
+  - PCM temperature
+  - Outside temperature
+  - Net heat flux through the wall
+  - Summary statistics (energy stored, max temp, etc.)
+- A MATLAB table (`viewdata`) with detailed per-second results:
+  - PCM temperature
+  - % melted
+  - Left and right side heat flow
+  - Net heat flow
+  - Outside temperature
+
+---
+
+## Notes
+
+- Units:
+  - Temperatures: °C
+  - Heat flux: W/m²
+  - Energy stored: kJ
+- If the PCM name or date is not found, the model will raise an error.
+- PCM transitions are handled by latent heat logic. Ensure correct property values in the Excel file.
+
+---
+
+## Help
+
+If errors occur, ensure:
+- All files are in the same folder
+- Excel files are formatted correctly
+- Inputs match expected values (case-sensitive)
+- Contact pastevens@utexas.edu
